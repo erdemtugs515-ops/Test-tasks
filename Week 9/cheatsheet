@@ -1,0 +1,7 @@
+Feed = input("Insert a number: ")
+try:
+    print(float(Feed))
+except Exception:
+    print("User caused error...")
+finally:
+    print("Proccess completed")

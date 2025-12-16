@@ -38,7 +38,7 @@ elif choice == "2":
 
     if sub_choice == "1":
         grams = float(input("Insert grams: "))
-        pounds = grams * 0.00220462  # 1 gram = 0.00220462 lb
+        pounds = grams * 0.00220462 
         print(f"{grams:.1f} g is {pounds:.1f} lb")
     elif sub_choice == "2":
         pounds = float(input("Insert pounds: "))

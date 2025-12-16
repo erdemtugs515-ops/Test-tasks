@@ -1,39 +1,44 @@
 SEPARATOR = ";"
 
-def readValues(filename) -> str:
+def readValues(filename: str) -> str:
     values = ""
-    with open(filename, "r") as file:
-        lines = file.readlines()
-        for i in range(len(lines)):
-            number = lines[i].strip()
-            if i < len(lines) - 1:
-                values += number + SEPARATOR
-            else:
-                values += number
+    try:
+        with open(filename, "r") as file:
+            lines = file.readlines()
+            for i, line in enumerate(lines):
+                number = line.strip()
+                if i < len(lines) - 1:
+                    values += number + SEPARATOR
+                else:
+                    values += number
+    except FileNotFoundError:
+        print(f'Error: File "{filename}" not found.')
+        return ""
     return values
 
-def analyseNumbers(values):
-    parts = values.split(SEPARATOR)
-    numbers = [int(x) for x in parts]
-    total = sum(numbers)
+def analyseValues(values_str: str) -> str:
+    if not values_str:
+        return ""
+    numbers = [int(x) for x in values_str.split(SEPARATOR)]
     count = len(numbers)
+    total = sum(numbers)
     greatest = max(numbers)
-    average = total / count if count > 0 else 0
-    return count, total, greatest, average
+    average = total / count
+    result = f"Count;Sum;Greatest;Average\n{count};{total};{greatest};{average:.2f}\n"
+    return result
 
-def showResults(filename, count, total, greatest, average):
+def displayResults(filename: str, result: str):
     print("#### Number analysis - START ####")
     print(f'File "{filename}" results:')
-    print("Count;Sum;Greatest;Average")
-    print(f"{count};{total};{greatest};{average:.2f}")
-    print("\n#### Number analysis - END ####")
+    print(result, end="")
+    print("#### Number analysis - END ####")
 
 def main():
     print("Program starting.")
     filename = input("Insert filename: ")
     values = readValues(filename)
-    count, total, greatest, average = analyseNumbers(values)
-    showResults(filename, count, total, greatest, average)
+    result = analyseValues(values)
+    displayResults(filename, result)
     print("Program ending.")
 
 if __name__ == "__main__":

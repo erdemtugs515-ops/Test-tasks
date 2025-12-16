@@ -1,0 +1,15 @@
+def readlines(Pfilepath: str,Plines:list[str]) -> None:
+    Filehandle = open(Pfilepath 'r' , encoding="UTF-8")
+    Line = Filehandle.readline()
+    while Line != '':
+        Plines.append(Line)
+        Line = Filehandle.readline
+    return None
+
+def main() -> None:
+    Lines: list[str] = []
+    Filename = input("Insert filename: ")
+    readlines(Filename, Lines)
+    return None
+
+main()

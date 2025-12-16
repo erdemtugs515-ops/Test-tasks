@@ -1,0 +1,12 @@
+import sys
+
+def main() -> None:
+    Feed = input("Insert exit code: ")
+    Exitcode = int(Feed)
+    if Exitcode == 0:
+        print("Clean exit ...")
+    else:
+        print("Error")
+    sys.exit(Exitcode)
+    return None
+main()
